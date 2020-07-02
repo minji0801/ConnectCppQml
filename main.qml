@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.13
+import ConnectEvent 1.0 // connectevent.cpp 파일의 등록된 클래스를 import 시켜준다. (cpp에서 1,0으로 등록하였기 때문에 import시에 1.0으로 적어준것!)
 import "."
 
 Window {
@@ -13,10 +14,15 @@ Window {
     title: qsTr("Hello World")
 
     signal qmlSignalStringData(var stringData); // qml에서 signal을 선언해주는 부분
-    signal qmlSignalintData(var intData);  // qml에서 signal을 선언해주는 부분
+    signal qmlSignalintData(var intData);       // qml에서 signal을 선언해주는 부분
 
     function qmlSlotTestData(data) {    // slot으로 등록한 함수
         console.log("qmlSlotTestData data : " + data);
+    }
+
+    ConnectEvent    // qml에서 클래스를 사용할 수 있도록 qml형식으로 선언해준다.
+    {
+        id: connectEvent;   // 클래스를 선언해주고 id를 등록
     }
 
     StackView {
@@ -48,6 +54,7 @@ Window {
                 font.pointSize: 50
             }
 
+            /*
             Button {
                 id: intButton   // int형 데이터를 매개변수에 넣어서 cpp함수를 호출하는 버튼
                 text: "int data"
@@ -59,6 +66,7 @@ Window {
                     qmlSignalintData(1000);  // qml에서 signal을 발생시키는 부분
                 }
             }
+            */
 
             Button {
                 id: strButton   // string형 데이터를 매개변수에 넣어서 cpp함수를 호출하는 버튼
@@ -68,7 +76,8 @@ Window {
                 anchors.top: testText.bottom
                 onClicked: {
                     console.log("qml signal strButton click")
-                    qmlSignalStringData("this is qml signal data");  // qml에서 signal을 발생시키는 부분
+                    //qmlSignalStringData("this is qml signal data");  // qml에서 signal을 발생시키는 부분
+                    connectEvent.cppStringTestMethod("qml register class method");  // 등록한 클래스의 함수를 호출하는 방법
                 }
             }
 

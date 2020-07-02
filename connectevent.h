@@ -15,18 +15,22 @@ public:
     ConnectEvent();
     ~ConnectEvent();
 
+    /*
     void cppSignaltoQmlSlot();  // cpp에서 시그널을 날리고 qml에서 받기 위해 connection을 해두는 함수
+    */
     void setWindow(QQuickWindow *Window);
-
+    Q_INVOKABLE void cppStringTestMethod(QString stringData);   // 함수 앞에 Q_INVOKABLE를 선언해서 qml에서 직접 호출이 가능한 함수를 만들어 준다.
+                                                                // Q_INVOKABLE 형식으로 선언을 안해주면 qml에서 함수를 가져올 수 없다.
 private:
     QQuickWindow *mMainView;
-
+/*
 signals:    // 클래스에서 siganl 등록하는 방법
     void cppSignaltestData(QVariant);
 
 public slots:   // 클래스에 slot을 등록
     void cppSlotStringData(QVariant stringData);
     void cppSlotintData(QVariant intData);
+*/
 };
 
 #endif // CONNECTEVENT_H
