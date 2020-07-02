@@ -12,6 +12,9 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
+    signal qmlSignalStringData(var stringData); // qml에서 signal을 선언해주는 부분
+    signal qmlSignalintData(var intData);  // qml에서 signal을 선언해주는 부분
+
     function qmlSlotTestData(data) {    // slot으로 등록한 함수
         console.log("qmlSlotTestData data : " + data);
     }
@@ -46,6 +49,30 @@ Window {
             }
 
             Button {
+                id: intButton   // int형 데이터를 매개변수에 넣어서 cpp함수를 호출하는 버튼
+                text: "int data"
+                anchors.right: strButton.left
+                anchors.rightMargin: 30
+                anchors.top: testText.bottom
+                onClicked: {
+                    console.log("qml signal intButton click")
+                    qmlSignalintData(1000);  // qml에서 signal을 발생시키는 부분
+                }
+            }
+
+            Button {
+                id: strButton   // string형 데이터를 매개변수에 넣어서 cpp함수를 호출하는 버튼
+                text: "String Data"
+                anchors.right: nextButton.left
+                anchors.rightMargin: 30
+                anchors.top: testText.bottom
+                onClicked: {
+                    console.log("qml signal strButton click")
+                    qmlSignalStringData("this is qml signal data");  // qml에서 signal을 발생시키는 부분
+                }
+            }
+
+            Button {
                 id: nextButton
                 text: "go screen1"
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -69,6 +96,8 @@ Window {
         }
     }
 }
+
+
 
 /*##^##
 Designer {

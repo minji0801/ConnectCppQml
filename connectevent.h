@@ -3,6 +3,8 @@
 
 #include <QQuickView>   // Qt Quick 사용자 인터페이스를 표시하는 창을 제공해준다.
 #include <QObject>      // 모든 Qt 객체의 기본 클래스이다.
+#include <iostream>
+using namespace std;
 
 class ConnectEvent : public QObject // connection을 사용하기 위해 상속받아야 하는 클래스
 {
@@ -21,6 +23,10 @@ private:
 
 signals:    // 클래스에서 siganl 등록하는 방법
     void cppSignaltestData(QVariant);
+
+public slots:   // 클래스에 slot을 등록
+    void cppSlotStringData(QVariant stringData);
+    void cppSlotintData(QVariant intData);
 };
 
 #endif // CONNECTEVENT_H
