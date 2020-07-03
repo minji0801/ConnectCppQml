@@ -16,7 +16,7 @@ public:
     ~CountNumber();
 
     void setWindow(QQuickWindow *Window);
-    Q_INVOKABLE QString countUp(QString stringData);
+    Q_INVOKABLE QString countUp(QString stringData);    // Q_INVOKABLE을 해줘야 qml에서 이 함수를 호출해서 쓸 수 있다.(★★★)
     Q_INVOKABLE QString countDown(QString stringData);
 
 private:
