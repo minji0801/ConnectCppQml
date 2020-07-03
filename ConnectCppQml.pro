@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         connectevent.cpp \
+        countnumber.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    connectevent.h
+    connectevent.h \
+    countnumber.h

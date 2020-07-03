@@ -2,7 +2,9 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.13
 import ConnectEvent 1.0 // connectevent.cpp 파일의 등록된 클래스를 import 시켜준다. (cpp에서 1,0으로 등록하였기 때문에 import시에 1.0으로 적어준것!)
+import CountNumber 1.0  // 20200703 새로 추가한 부분
 import "."
+
 
 Window {
     property bool mbImageClicked: true
@@ -25,6 +27,12 @@ Window {
         id: connectEvent;   // 클래스를 선언해주고 id를 등록
     }
 
+    // 20200703 새로 추가한 부분
+    CountNumber
+    {
+        id: countNumber;
+    }
+
     StackView {
         id: stackView
         anchors.fill: parent
@@ -36,6 +44,65 @@ Window {
             Rectangle { // 배경 색을 지정하는 부분
                 color: "red"
                 anchors.fill: parent
+
+                // 20200703 새로 추가한 부분
+                Rectangle {
+                    id: countRectangle
+                    x: 8
+                    y: 328
+                    width: 200
+                    height: 144
+                    color: "#ffffff"
+
+                    Button {
+                        id: plusButton
+                        x: 32
+                        y: 21
+                        width: 40
+                        height: 40
+                        text: qsTr("+")
+                        font.pointSize: 20
+                        font.bold: true
+
+                        onClicked:
+                        {
+                            // + 함수 실행 -> count up
+                            // 클래스에 정의된 함수 가져와 실행
+                            number.text = countNumber.countUp(number.text);
+                        }
+                    }
+
+                    Button {
+                        id: minusButton
+                        x: 127
+                        y: 21
+                        width: 40
+                        height: 40
+                        text: qsTr("-")
+                        font.bold: true
+                        font.pointSize: 20
+
+                        onClicked:
+                        {
+                            // - 함수 실행 -> count down
+                            // 클래스에 정의된 함수 가져와 실행
+                            number.text = countNumber.countDown(number.text);
+                        }
+                    }
+
+                    Text {
+                        id: number
+                        x: 60
+                        y: 93
+                        width: 80
+                        height: 31
+                        text: qsTr("0")
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 30
+                    }
+                }
             }
 
             Text {
@@ -110,6 +177,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:3;anchors_height:200;anchors_width:200}D{i:1;anchors_height:200;anchors_width:200}
+    D{i:1;anchors_height:200;anchors_width:200}D{i:3;anchors_height:200;anchors_width:200}
 }
 ##^##*/
