@@ -3,5 +3,5 @@
 
 
 ## 참고자료
- - 프로잭트참고 : https://youonlyliveonce1.tistory.com/23?category=712090
+ - 프로트참고 : https://youonlyliveonce1.tistory.com/23?category=712090
  
